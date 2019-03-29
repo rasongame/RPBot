@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher, executor, types, utils
 from aiogram.utils import exceptions
 import config
 import asyncio
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 loop = asyncio.get_event_loop()
 bot = Bot(token=config.API_TOKEN,loop=loop, proxy=config.PROXY_URL,proxy_auth=config.PROXY_AUTH)
 dp = Dispatcher(bot)
@@ -18,7 +18,7 @@ async def me_Message(message: types.Message):
 @dp.message_handler(commands=['do'])
 async def do_Message(message: types.Message):
     try:
-        await bot.send_message(message.chat.id,f"{message.get_args()}")
+        await bot.send_message(message.chat.id,f"{message.get_args()} | {message.from_user.first_name} ")
     except exceptions.MessageTextIsEmpty:
         print("crashing bu")
 
@@ -28,6 +28,6 @@ async def do_Message(message: types.Message):
 async def f_Message(message: types.Message):
     await bot.send_message(message.chat.id, f"{message.from_user.first_name} pressed F to pay respect.")
     await bot.delete_message(message.chat.id,message.message_id)
-    
+
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=False)
