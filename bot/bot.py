@@ -12,7 +12,7 @@ async def start_Message(message: types.Message):
     await bot.send_message(message.from_user.id, "/me чищу стол \n /do На улице необычайно красиво \n Это примеры")
 @dp.message_handler(commands=['me'])
 async def me_Message(message: types.Message):
-    await bot.send_message(message.from_user.id,f"{message.from_user.first_name} {message.get_args()}")
+    await bot.send_message(message.chat.id,f"{message.from_user.first_name} {message.get_args()}")
     await bot.delete_message(message.chat.id, message.message_id)
 
 @dp.message_handler(commands=['do'])
