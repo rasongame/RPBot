@@ -29,5 +29,6 @@ async def f_Message(message: types.Message):
     try:
         await bot.send_message(message.chat.id, f"{message.from_user.first_name} pressed F to pay respect. ")
         await bot.delete_message(message.chat.id,message.message_id)
+
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=False)
