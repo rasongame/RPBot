@@ -36,7 +36,7 @@ async def f_Message(message: types.Message):
 async def try_Message(message: types.Message):
     await bot.send_message(message.chat.id,f'Подкидываем монетку...')
     dice_try = choice(dice_list)
-    await bot.edit_message_text(message.chat.id, message.id, f'Выпал(а) {dice_try}')
+    await bot.edit_message_text(message.chat.id, message.from_user.id, f'Выпал(а) {dice_try}')
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=False)
